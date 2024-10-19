@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "645764214945",
+    "project_id": "tickdone-ef732",
+    "storage_bucket": "tickdone-ef732.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645764214945:android:fcbf4d68e9246df1bac0e0",
+        "android_client_info": {
+          "package_name": "com.example.kelompok10_tickdone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645764214945-c3uqd4lch69rssnbrpr23cab9urph43l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHNiXXXqlajC3Fg1ViqmA7EIUgPos3oT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "645764214945-c3uqd4lch69rssnbrpr23cab9urph43l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
