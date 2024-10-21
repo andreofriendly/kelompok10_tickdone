@@ -1,0 +1,17 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Dark background color -->
+    <solid android:color="#1E1E1E" /> <!-- Dark gray/black background -->
+
+    <!-- Rounded corners -->
+    <corners android:radius="8dp" />
+
+    <!-- Border (stroke) for thin outline -->
+    <stroke android:width="1dp" android:color="#4D4D4D" /> <!-- Light gray border color -->
+
+    <!-- Padding (optional) for spacing inside the input field -->
+    <padding
+        android:left="8dp"
+        android:top="8dp"
+        android:right="8dp"
+        android:bottom="8dp" />
+</shape>
