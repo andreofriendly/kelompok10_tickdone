@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -51,7 +52,8 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:20.7.0") // The latest version as of October 2024
     implementation(platform("com.google.firebase:firebase-bom:32.0.0")) // Ensures consistent Firebase versions
     implementation("com.google.firebase:firebase-auth-ktx") // Firebase Auth with Kotlin support
-    implementation("com.google.firebase:firebase-analytics-ktx") // Example of another Firebase service
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation(libs.firebase.database) // Example of another Firebase service
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
