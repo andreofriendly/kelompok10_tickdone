@@ -17,16 +17,23 @@ import com.google.firebase.database.FirebaseDatabase
 
 class UpdateFragment : Fragment() {
 
+
+
     private var _binding : FragmentUpdateBinding? = null
     private val binding get() = _binding!!
     private val args : UpdateFragmentArgs by navArgs()
     private lateinit var firebaseRef : DatabaseReference
     private lateinit var auth: FirebaseAuth;
     private lateinit var user: FirebaseUser;
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
+
     ): View {
+
         _binding = FragmentUpdateBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!
@@ -43,7 +50,10 @@ class UpdateFragment : Fragment() {
         return binding.root
     }
 
+
+
     private fun updateData() {
+
         val name = binding.editUpdateName.text.toString()
         val description = binding.editUpdateDescription.text.toString()
         val date = binding.editUpdateDate.text.toString()
