@@ -15,6 +15,11 @@ class GetStarted : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_get_started) // Replace with your actual layout name
 
+        window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
+
         val btnLogin: Button = findViewById(R.id.btn_login)
         val btnCreateAccount: Button = findViewById(R.id.btn_create_account)
 
