@@ -1,10 +1,7 @@
 package com.example.kelompok10_tickdone
 
 import android.os.Bundle
-import android.view.View
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -14,6 +11,7 @@ import com.example.kelompok10_tickdone.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,19 +19,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Setup toolbar
         setSupportActionBar(binding.toolbar)
 
-//        val navController = findNavController(R.id.fragmentContainerView)
+        // Get the NavHostFragment and NavController
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
 
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment, R.id.addFragment))
+        // Define the top-level destinations in the app (no back button for these)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.homeFragment, R.id.addFragment)
+        )
+
+        // Set up the action bar (toolbar) with the NavController and AppBarConfiguration
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
-//    override fun onSupportNavigateUp(): Boolean {
-//        val navController = findNavController(R.id.nav_host_fragment_content_main)
-//        return navController.navigateUp(appBarConfiguration)
-//                || super.onSupportNavigateUp()
-//    }
+    // This method handles the back navigation for the toolbar back button
+    override fun onSupportNavigateUp(): Boolean {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navController = navHostFragment.navController
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
 }
