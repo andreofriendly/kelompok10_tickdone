@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TimeFragment">
+    android:background="#000000">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Circular Progress Bar with Timer -->
+    <FrameLayout
+        android:id="@+id/circularProgressContainer"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp">
+
+        <!-- Custom Circular Progress Bar -->
+        <com.example.kelompok10_tickdone.CircularProgressBar
+            android:id="@+id/circularProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- Timer Text -->
+        <TextView
+            android:id="@+id/timerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textColor="#FFFFFF"
+            android:textSize="48sp"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+    <!-- Informational Text -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/notificationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="While your focus mode is on, all your notifications will be off"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_below="@id/circularProgressContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:paddingHorizontal="30dp"
+        android:gravity="center" />
 
-</FrameLayout>
+    <!-- Start Focusing Button -->
+    <Button
+        android:id="@+id/startFocusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Focusing"
+        android:backgroundTint="#FFC107"
+        android:textColor="#000000"
+        android:layout_below="@id/notificationTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
+</RelativeLayout>

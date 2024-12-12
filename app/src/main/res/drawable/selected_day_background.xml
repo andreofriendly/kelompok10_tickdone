@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Solid color for the background -->
+    <solid android:color="@color/yellow" /> <!-- Replace with your desired highlight color -->
+
+    <!-- Rounded corners to make it a circle -->
+    <corners android:radius="50dp" />
+</shape>
