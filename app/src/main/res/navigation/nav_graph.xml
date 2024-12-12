@@ -25,4 +25,9 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+
+    <action
+        android:id="@+id/action_addFragment_to_homeFragment"
+        app:destination="@id/homeFragment" />
+
 </navigation>

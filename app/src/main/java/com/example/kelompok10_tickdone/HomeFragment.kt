@@ -36,9 +36,8 @@ class HomeFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!
 
-        binding.btnAdd.setOnClickListener(){
-            findNavController().navigate(R.id.action_homeFragment_to_addFragment)
-        }
+
+
         firebaseRef = FirebaseDatabase.getInstance().getReference("tasks")
         tasksList = arrayListOf()
 

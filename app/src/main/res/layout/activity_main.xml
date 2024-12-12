@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@android:color/black"
     tools:context=".MainActivity">
 
     <!-- AppBar -->
@@ -17,27 +18,6 @@
         app:layout_scrollFlags="scroll|enterAlways"
         app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light" />
 
-
-
-    <!-- Bottom App Bar -->
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottom_app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:backgroundTint="@color/gray"
-        app:fabCradleMargin="10dp"
-        app:fabCradleRoundedCornerRadius="50dp">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            app:menu="@menu/bottom_menu"
-            app:labelVisibilityMode="labeled" />
-    </com.google.android.material.bottomappbar.BottomAppBar>
-
     <!-- Main Content Area -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
@@ -46,7 +26,39 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/my_nav" />
+        app:navGraph="@navigation/my_nav"/>
 
+    <!-- Bottom App Bar -->
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:backgroundTint="@color/white"
+        app:fabCradleMargin="10dp"
+        app:fabCradleRoundedCornerRadius="50dp">
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:menu="@menu/bottom_menu"
+            app:labelVisibilityMode="labeled" />
+
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <!-- Floating Action Button centered in Bottom App Bar -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:src="@android:drawable/ic_input_add"
+        android:layout_marginBottom="45dp"
+        android:backgroundTint="@color/white"
+        android:layout_gravity="center|bottom" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

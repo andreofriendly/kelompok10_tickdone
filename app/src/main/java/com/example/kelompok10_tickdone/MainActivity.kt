@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
@@ -56,6 +59,9 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        binding.btnAdd.setOnClickListener(){
+            navController.navigate(R.id.action_homeFragment_to_addFragment)
+        }
 
         // Optionally, set up the default fragment at startup
         navController.navigate(R.id.homeFragment) // Navigate to HomeFragment by default
