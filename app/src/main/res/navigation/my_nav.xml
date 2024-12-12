@@ -50,4 +50,22 @@
             android:name="time"
             app:argType="string" />
     </fragment>
+
+    <fragment
+        android:id="@+id/timeFragment"
+        android:name="com.example.kelompok10_tickdone.TimeFragment"
+        android:label="Time"
+        tools:layout="@layout/fragment_time" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.kelompok10_tickdone.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/calenderFragment"
+        android:name="com.example.kelompok10_tickdone.CalenderFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

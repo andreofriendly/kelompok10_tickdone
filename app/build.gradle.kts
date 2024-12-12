@@ -55,6 +55,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation(libs.firebase.database) // Example of another Firebase service
 
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
