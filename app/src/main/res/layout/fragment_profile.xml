@@ -79,6 +79,7 @@
 
             <!-- Change Account Name -->
             <LinearLayout
+                android:id="@+id/changeAccountNameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
