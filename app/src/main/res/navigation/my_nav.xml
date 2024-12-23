@@ -65,6 +65,9 @@
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_editPasswordFragment"
+            app:destination="@id/editPassword" />
     </fragment>
 
     <fragment
@@ -76,4 +79,8 @@
         android:id="@+id/editProfileFragment"
         android:name="com.example.kelompok10_tickdone.fragment.EditProfileFragment"
         android:label="Edit Profile" />
+    <fragment
+        android:id="@+id/editPassword"
+        android:name="com.example.kelompok10_tickdone.EditPassword"
+        android:label="Edit Password" />
 </navigation>

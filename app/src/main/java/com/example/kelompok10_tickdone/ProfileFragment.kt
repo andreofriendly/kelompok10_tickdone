@@ -63,6 +63,10 @@ class ProfileFragment : Fragment() {
         binding.changeAccountNameLayout.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
         }
+
+        binding.changeAccountPasswordLayout.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_editPasswordFragment)
+        }
     }
 
     override fun onDestroyView() {

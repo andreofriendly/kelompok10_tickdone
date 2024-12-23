@@ -64,7 +64,7 @@ class EditProfileFragment : Fragment() {
             val id = user.uid
             val userData = User(id, name)
             firebaseref.child(id).setValue(userData).addOnCompleteListener(){
-                Toast.makeText(requireContext(), "Data mahasiswa berhasil diupdate", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Data user berhasil diupdate", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener(){
                 Toast.makeText(requireContext(), "Error ${it.message}", Toast.LENGTH_SHORT).show()
             }
