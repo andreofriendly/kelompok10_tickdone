@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.example.kelompok10_tickdone.databinding.FragmentAddBinding
 import com.example.kelompok10_tickdone.databinding.FragmentUpdateBinding
+import com.example.kelompok10_tickdone.models.Status
 import com.example.kelompok10_tickdone.models.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -23,6 +24,7 @@ class UpdateFragment : Fragment() {
     private val binding get() = _binding!!
     private val args : UpdateFragmentArgs by navArgs()
     private lateinit var firebaseRef : DatabaseReference
+    private lateinit var firebaseRef2 : DatabaseReference
     private lateinit var auth: FirebaseAuth;
     private lateinit var user: FirebaseUser;
 
@@ -38,6 +40,14 @@ class UpdateFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!
         firebaseRef = FirebaseDatabase.getInstance().getReference("tasks")
+        firebaseRef2 = FirebaseDatabase.getInstance().getReference("statuses")
+        firebaseRef2.child(args.id).get().addOnSuccessListener { snapshot ->
+            val statusModel = snapshot.getValue(Status::class.java)
+            binding.checkboxTaskStatus.isChecked = statusModel?.status == true
+        }.addOnFailureListener {
+            Toast.makeText(context, "Failed to load status: ${it.message}", Toast.LENGTH_SHORT).show()
+        }
+
         binding.apply {
             editUpdateName.setText(args.name)
             editUpdateDescription.setText(args.description)
@@ -60,11 +70,29 @@ class UpdateFragment : Fragment() {
         val time = binding.editUpdateTime.text.toString()
         val task = Task(args.id, name, description, date, time, user.uid)
 
-        firebaseRef.child(args.id).setValue(task).addOnCompleteListener(){
+        firebaseRef.child("tasks").child(args.id).setValue(task).addOnCompleteListener(){
             Toast.makeText(context, "Task updated successfully", Toast.LENGTH_SHORT).show()
+            updateStatus()
         }.addOnFailureListener(){
             Toast.makeText(context, "Error ${it.message}", Toast.LENGTH_SHORT).show()
         }
     }
+
+    private fun updateStatus() {
+        val taskId = args.id
+        val userId = user.uid
+        val status = binding.checkboxTaskStatus.isChecked
+
+        val statusModel = Status(task_id = taskId, user_id = userId, status = status)
+
+        firebaseRef2.child(taskId).setValue(statusModel)
+            .addOnCompleteListener {
+                Toast.makeText(context, "Status updated successfully", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Error ${it.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 
 }

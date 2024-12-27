@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.kelompok10_tickdone.databinding.FragmentAddBinding
+import com.example.kelompok10_tickdone.models.Status
 import com.example.kelompok10_tickdone.models.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -23,6 +24,7 @@ class AddFragment : Fragment() {
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
     private lateinit var firebaseRef: DatabaseReference
+    private lateinit var firebaseRef2 : DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var user: FirebaseUser
 
@@ -32,6 +34,7 @@ class AddFragment : Fragment() {
     ): View {
         _binding = FragmentAddBinding.inflate(inflater, container, false)
         firebaseRef = FirebaseDatabase.getInstance().getReference("tasks")
+        firebaseRef2 = FirebaseDatabase.getInstance().getReference("statuses")
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!
 
@@ -111,6 +114,17 @@ class AddFragment : Fragment() {
 
         firebaseRef.child(taskId).setValue(task).addOnCompleteListener {
             Toast.makeText(context, "Task saved successfully", Toast.LENGTH_SHORT).show()
+
+            val statusModel = Status(task_id = taskId, user_id = user.uid, status = false)
+
+            firebaseRef2.child(taskId).setValue(statusModel)
+                .addOnCompleteListener {
+                    Toast.makeText(context, "Status updated successfully", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(context, "Error ${it.message}", Toast.LENGTH_SHORT).show()
+                }
+
             findNavController().navigate(R.id.action_addFragment_to_homeFragment)
         }.addOnFailureListener {
             Toast.makeText(context, "Error ${it.message}", Toast.LENGTH_SHORT).show()

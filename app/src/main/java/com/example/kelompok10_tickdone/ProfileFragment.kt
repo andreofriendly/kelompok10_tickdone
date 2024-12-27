@@ -1,5 +1,6 @@
 package com.example.kelompok10_tickdone
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -25,7 +26,8 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth;
     private lateinit var user: FirebaseUser;
-    private lateinit var firebaseref: DatabaseReference;
+    private lateinit var firebaseRef: DatabaseReference;
+    private lateinit var firebaseRef2: DatabaseReference;
     private lateinit var userName: TextView
 
     override fun onCreateView(
@@ -41,10 +43,11 @@ class ProfileFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!
-        firebaseref = FirebaseDatabase.getInstance().getReference("user")
+        firebaseRef = FirebaseDatabase.getInstance().getReference("user")
+        firebaseRef2 = FirebaseDatabase.getInstance().getReference("statuses")
 
         userName = binding.profileName
-        firebaseref.child(user.uid).addListenerForSingleValueEvent(object : ValueEventListener {
+        firebaseRef.child(user.uid).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     val userDisplay = dataSnapshot.getValue(User::class.java)
@@ -58,6 +61,30 @@ class ProfileFragment : Fragment() {
                 TODO("Not yet implemented")
             }
         })
+
+        firebaseRef2.orderByChild("user_id").equalTo(user.uid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                @SuppressLint("SetTextI18n")
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var trueCount = 0
+                    var falseCount = 0
+
+                    for (child in snapshot.children) {
+                        val status = child.child("status").getValue(Boolean::class.java)
+                        if (status == true) {
+                            trueCount++
+                        } else if (status == false) {
+                            falseCount++
+                        }
+                    }
+                    binding.taskLeft.setText("$falseCount Task Left")
+                    binding.taskDone.setText("$trueCount Task Done")
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
 
         // Menambahkan listener untuk mengubah nama akun
         binding.changeAccountNameLayout.setOnClickListener {

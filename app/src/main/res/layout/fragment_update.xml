@@ -7,6 +7,7 @@
     android:padding="25dp"
     tools:context=".AddFragment">
 
+
     <EditText
         android:id="@+id/editUpdateName"
         android:layout_width="0dp"
@@ -58,6 +59,14 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editUpdateDate" />
+    <CheckBox
+        android:id="@+id/checkbox_task_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Task Completed"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editUpdateTime"/>
 
     <Button
         android:id="@+id/btnUpdate"
@@ -68,5 +77,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editUpdateTime" />
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_task_status" />
 </androidx.constraintlayout.widget.ConstraintLayout>
