@@ -7,6 +7,7 @@ import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kelompok10_tickdone.HomeFragment
 import com.example.kelompok10_tickdone.HomeFragmentDirections
+import com.example.kelompok10_tickdone.R
 import com.example.kelompok10_tickdone.databinding.RvTasksItemBinding
 import com.example.kelompok10_tickdone.models.Task
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -33,16 +34,23 @@ class RvTasksAdapter(private val taskList : java.util.ArrayList<Task>) : Recycle
                 tvDescriptionItem.text = currentItem.description
                 tvDateItem.text = currentItem.date
                 tvTimeItem.text = currentItem.time
-                rvContainer.setOnClickListener(){
-                    val action = HomeFragmentDirections.actionHomeFragmentToUpdateFragment(
-                        currentItem.id.toString(),
-                        currentItem.name.toString(),
-                        currentItem.description.toString(),
-                        currentItem.date.toString(),
-                        currentItem.time.toString()
-                    )
-                    findNavController(holder.itemView).navigate(action)
+                rvContainer.setOnClickListener {
+                    val navController = findNavController(holder.itemView)
+                    val currentDestination = navController.currentDestination?.id
+
+                    // Periksa apakah saat ini berada di HomeFragment
+                    if (currentDestination == R.id.homeFragment) {
+                        val action = HomeFragmentDirections.actionHomeFragmentToUpdateFragment(
+                            currentItem.id.toString(),
+                            currentItem.name.toString(),
+                            currentItem.description.toString(),
+                            currentItem.date.toString(),
+                            currentItem.time.toString()
+                        )
+                        navController.navigate(action)
+                    }
                 }
+
 
                 rvContainer.setOnLongClickListener(){
                     MaterialAlertDialogBuilder(holder.itemView.context).setTitle("Delete item permanently")
