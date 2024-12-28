@@ -35,7 +35,7 @@ class TimeFragment : Fragment() {
 
     private fun startTimer() {
         timer?.cancel() // Cancel any previous timer if active
-        val focusDuration = 25 * 1000L // 25 seconds in milliseconds
+        val focusDuration = 600 * 1000L // 25 seconds in milliseconds
         val totalDuration = focusDuration.toFloat()
 
         timer = object : CountDownTimer(focusDuration, 1000) {
