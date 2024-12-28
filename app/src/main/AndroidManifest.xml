@@ -27,7 +27,8 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:theme="@style/Theme.Kelompok10_TickDone" />
+            android:theme="@style/Theme.Kelompok10_TickDone"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".OnboardingAdapter"
             android:exported="false"

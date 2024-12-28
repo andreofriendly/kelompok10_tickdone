@@ -11,8 +11,12 @@
             android:id="@+id/editName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#FFF"
-            android:hint="Enter your name"/>
+            android:layout_marginTop="35dp"
+            android:drawableTint="#F6F3F3"
+            android:foregroundTint="#FFFFFF"
+            android:hint="Enter your name"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@color/gray"/>
 
         <Button
             android:id="@+id/btnSend"
