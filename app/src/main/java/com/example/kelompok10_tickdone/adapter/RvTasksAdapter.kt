@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.kelompok10_tickdone.HomeFragment
 import com.example.kelompok10_tickdone.HomeFragmentDirections
 import com.example.kelompok10_tickdone.R
@@ -34,43 +35,56 @@ class RvTasksAdapter(private val taskList : java.util.ArrayList<Task>) : Recycle
                 tvDescriptionItem.text = currentItem.description
                 tvDateItem.text = currentItem.date
                 tvTimeItem.text = currentItem.time
+
+                // Load image using Glide
+                if (currentItem.imageUri != null) {
+                    Glide.with(holder.itemView.context)
+                        .load(currentItem.imageUri)
+                        .placeholder(R.drawable.task_background) // Gambar placeholder
+                        .into(taskImage)
+                } else {
+                    taskImage.setImageResource(R.drawable.task_background)
+                }
+
                 rvContainer.setOnClickListener {
                     val navController = findNavController(holder.itemView)
                     val currentDestination = navController.currentDestination?.id
 
-                    // Periksa apakah saat ini berada di HomeFragment
                     if (currentDestination == R.id.homeFragment) {
                         val action = HomeFragmentDirections.actionHomeFragmentToUpdateFragment(
                             currentItem.id.toString(),
                             currentItem.name.toString(),
                             currentItem.description.toString(),
                             currentItem.date.toString(),
-                            currentItem.time.toString()
+                            currentItem.time.toString(),
+                            currentItem.imageUri.toString() // Pass image URI
                         )
                         navController.navigate(action)
                     }
                 }
 
-
-                rvContainer.setOnLongClickListener(){
-                    MaterialAlertDialogBuilder(holder.itemView.context).setTitle("Delete item permanently")
+                rvContainer.setOnLongClickListener {
+                    MaterialAlertDialogBuilder(holder.itemView.context)
+                        .setTitle("Delete item permanently")
                         .setMessage("Are you sure want to delete this task?")
-                        .setPositiveButton("Yes"){_,_ ->
+                        .setPositiveButton("Yes") { _, _ ->
                             val firebaseRef = FirebaseDatabase.getInstance().getReference("tasks")
                             firebaseRef.child(currentItem.id.toString()).removeValue()
                                 .addOnSuccessListener {
                                     Toast.makeText(holder.itemView.context, "Tasks removed successfully", Toast.LENGTH_SHORT).show()
                                 }
-                                .addOnFailureListener(){
+                                .addOnFailureListener {
                                     Toast.makeText(holder.itemView.context, "Error: ${it.message}", Toast.LENGTH_SHORT).show()
                                 }
-                        }.setNegativeButton("No"){_,_ ->
+                        }
+                        .setNegativeButton("No") { _, _ ->
                             Toast.makeText(holder.itemView.context, "Cancelled", Toast.LENGTH_SHORT).show()
                         }
                         .show()
-                    return@setOnLongClickListener true
+                    true
                 }
             }
         }
     }
+
 }

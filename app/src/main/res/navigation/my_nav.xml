@@ -49,6 +49,9 @@
         <argument
             android:name="time"
             app:argType="string" />
+        <argument
+            android:name="imageUri"
+            app:argType="string" />
     </fragment>
 
     <fragment
