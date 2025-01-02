@@ -9,5 +9,6 @@ data class Task(
     val description : String? = null,
     val date : String? = null,
     val time : String? = null,
-    val user : String? = null
+    val user : String? = null,
+    val imageUri : String? = null
 )

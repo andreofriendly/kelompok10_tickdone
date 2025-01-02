@@ -55,7 +55,8 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx") // Firebase Auth with Kotlin support
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation(libs.firebase.database) // Example of another Firebase service
-
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
 
 
     testImplementation(libs.junit)
