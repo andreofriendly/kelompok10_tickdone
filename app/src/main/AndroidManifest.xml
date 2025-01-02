@@ -9,6 +9,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+
         android:supportsRtl="true"
         android:theme="@style/Theme.Kelompok10_TickDone"
         tools:targetApi="31">
@@ -28,10 +29,8 @@
             android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/Theme.Kelompok10_TickDone" />
-        <activity
-            android:name=".OnboardingAdapter"
-            android:exported="false"
-            android:theme="@style/Theme.Kelompok10_TickDone" />
+
+
         <activity
             android:name=".OnboardingActivity"
             android:exported="true"

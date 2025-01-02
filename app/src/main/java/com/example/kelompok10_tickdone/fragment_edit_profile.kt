@@ -1,4 +1,4 @@
-package com.example.kelompok10_tickdone.fragment
+package com.example.kelompok10_tickdone
 
 import android.os.Bundle
 import android.view.LayoutInflater
