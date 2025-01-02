@@ -60,9 +60,17 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        binding.btnAdd.setOnClickListener(){
-            navController.navigate(R.id.action_homeFragment_to_addFragment)
+        binding.btnAdd.setOnClickListener {
+            val currentDestination = navController.currentDestination?.id
+            when (currentDestination) {
+                R.id.homeFragment -> navController.navigate(R.id.action_homeFragment_to_addFragment)
+                R.id.timeFragment -> navController.navigate(R.id.action_timeFragment_to_addFragment)
+                R.id.calenderFragment -> navController.navigate(R.id.action_calenderFragment_to_addFragment)
+                R.id.profileFragment -> navController.navigate(R.id.action_profileFragment_to_addFragment)
+                else -> Toast.makeText(this, "Navigation not available from this screen", Toast.LENGTH_SHORT).show()
+            }
         }
+
 
         // Optionally, set up the default fragment at startup
         navController.navigate(R.id.homeFragment) // Navigate to HomeFragment by default

@@ -132,6 +132,13 @@ class AddFragment : Fragment() {
             return
         }
 
+//        // Ensure user is still authenticated
+//        if (auth.currentUser == null) {
+//            Toast.makeText(context, "Session expired. Please log in again.", Toast.LENGTH_SHORT).show()
+//            findNavController().navigate(R.id.) // Adjust with your login fragment ID
+//            return
+//        }
+
         val taskId = firebaseRef.push().key!!
         val imagePath = saveImageLocally(taskId) // Save image locally and get its path
 
@@ -145,16 +152,16 @@ class AddFragment : Fragment() {
             firebaseRef2.child(taskId).setValue(statusModel)
                 .addOnCompleteListener {
                     Toast.makeText(context, "Status updated successfully", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_addFragment_to_homeFragment)
                 }
                 .addOnFailureListener {
                     Toast.makeText(context, "Error ${it.message}", Toast.LENGTH_SHORT).show()
                 }
-
-            findNavController().navigate(R.id.action_addFragment_to_homeFragment)
         }.addOnFailureListener {
             Toast.makeText(context, "Error ${it.message}", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     private fun saveImageLocally(taskId: String): String? {
         return if (imageUri != null) {

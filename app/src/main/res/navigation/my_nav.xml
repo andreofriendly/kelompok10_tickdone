@@ -21,11 +21,12 @@
         android:id="@+id/addFragment"
         android:name="com.example.kelompok10_tickdone.AddFragment"
         android:label="Create Task"
-        tools:layout="@layout/fragment_add" >
+        tools:layout="@layout/fragment_add">
         <action
             android:id="@+id/action_addFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/updateFragment"
         android:name="com.example.kelompok10_tickdone.UpdateFragment"
@@ -58,13 +59,21 @@
         android:id="@+id/timeFragment"
         android:name="com.example.kelompok10_tickdone.TimeFragment"
         android:label="Time"
-        tools:layout="@layout/fragment_time" />
+        tools:layout="@layout/fragment_time">
+        <action
+            android:id="@+id/action_timeFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.kelompok10_tickdone.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_addFragment"
+            app:destination="@id/addFragment" />
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
@@ -76,8 +85,12 @@
     <fragment
         android:id="@+id/calenderFragment"
         android:name="com.example.kelompok10_tickdone.CalenderFragment"
-        android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
+        android:label="Calendar"
+        tools:layout="@layout/fragment_calender">
+        <action
+            android:id="@+id/action_calenderFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.kelompok10_tickdone.fragment.EditProfileFragment"
