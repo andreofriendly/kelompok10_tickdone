@@ -82,18 +82,23 @@ class CalenderFragment : Fragment() {
         fetchTasksForDate(today) // Default menampilkan tugas hari ini
     }
 
-    // Fungsi untuk mengambil tugas berdasarkan tanggal
     @RequiresApi(Build.VERSION_CODES.O)
     private fun fetchTasksForDate(date: LocalDate) {
-        val selectedDateString = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) // Format tanggal sesuai Firebase
-        firebaseRef.orderByChild("date").equalTo(selectedDateString)
-            .addValueEventListener(object : ValueEventListener {
+        val selectedDateString = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) // Format date as string
+
+        firebaseRef
+            .orderByChild("user")
+            .equalTo(user.uid) // Filter tasks by the current user's UID
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     tasksList.clear()
                     if (snapshot.exists()) {
                         for (taskSnap in snapshot.children) {
                             val task = taskSnap.getValue(Task::class.java)
-                            task?.let { tasksList.add(it) }
+                            // Ensure the task's date matches the selected date
+                            if (task != null && task.date == selectedDateString) {
+                                tasksList.add(task)
+                            }
                         }
                     }
                     val rvAdapter = RvTasksAdapter(tasksList)
@@ -101,10 +106,12 @@ class CalenderFragment : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
                 }
             })
     }
+
+
 
 
 

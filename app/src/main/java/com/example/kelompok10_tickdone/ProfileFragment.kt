@@ -46,6 +46,9 @@ class ProfileFragment : Fragment() {
         firebaseRef = FirebaseDatabase.getInstance().getReference("user")
         firebaseRef2 = FirebaseDatabase.getInstance().getReference("statuses")
 
+
+
+
         userName = binding.profileName
         firebaseRef.child(user.uid).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -94,7 +97,18 @@ class ProfileFragment : Fragment() {
         binding.changeAccountPasswordLayout.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_editPasswordFragment)
         }
+
+        binding.logout.setOnClickListener {
+
+            // Redirect to the login screen
+            val intent = Intent(requireContext(), OnboardingActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            requireActivity().finish()
+
+        }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
